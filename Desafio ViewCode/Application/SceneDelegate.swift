@@ -17,7 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let safeWindow = UIWindow(windowScene: windowScene)
         safeWindow.frame = UIScreen.main.bounds
-        safeWindow.rootViewController = IntroViewController()
+        let introViewController = IntroViewController()
+        let navViewController = UINavigationController(rootViewController: introViewController)
+        safeWindow.rootViewController = navViewController
         safeWindow.backgroundColor = UIColor(rgb: 0xEFEFEF)
         safeWindow.makeKeyAndVisible()
         window = safeWindow

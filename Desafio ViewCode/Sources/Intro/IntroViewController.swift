@@ -13,13 +13,13 @@ final class IntroViewController: UIViewController {
         let label = UILabel()
         label.text = "Meu Saldo"
         label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = UIColor(rgb: 0xA1A1A1)
+        label.textColor = UIColor(rgb: 0xA2A2A2)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var whiteView: UIView = {
-        let whiteView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 30))
+        let whiteView = UIView()
         whiteView.backgroundColor = .white
         whiteView.layer.cornerRadius = 8
         whiteView.isHidden = false
@@ -32,7 +32,8 @@ final class IntroViewController: UIViewController {
     private lazy var myBalanceTextField: UITextField = {
         let myBalanceTextField = UITextField()
         myBalanceTextField.textColor = .black
-        myBalanceTextField.font = UIFont.systemFont(ofSize: 32)
+        myBalanceTextField.font = UIFont.boldSystemFont(ofSize: 32)
+        myBalanceTextField.borderStyle = .none
         myBalanceTextField.translatesAutoresizingMaskIntoConstraints = false
         myBalanceTextField.placeholder = "R$ 1.000,00"
         myBalanceTextField.textColor = UIColor(rgb: 0x5335A6F)
@@ -49,8 +50,9 @@ final class IntroViewController: UIViewController {
     
     private lazy var expenseButton: UIButton = {
         let addButton = UIButton()
-        addButton.setTitle("+\nNOVA DESPESA", for: .normal)
-        addButton.titleLabel?.font = .systemFont(ofSize: 10)
+        addButton.setTitle("-\nNOVA DESPESA", for: .normal)
+        addButton.titleLabel?.font = .boldSystemFont(ofSize: 12)
+        addButton.titleLabel?.textAlignment = .center
         addButton.backgroundColor = UIColor(rgb: 0xC24343)
         addButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         addButton.contentHorizontalAlignment = .center
@@ -62,7 +64,8 @@ final class IntroViewController: UIViewController {
     private lazy var incomeButton: UIButton = {
         let incomeButton = UIButton()
         incomeButton.setTitle("+\nNOVA RECEITA", for: .normal)
-        incomeButton.titleLabel?.font = .systemFont(ofSize: 10)
+        incomeButton.titleLabel?.font = .boldSystemFont(ofSize: 12)
+        incomeButton.titleLabel?.textAlignment = .center
         incomeButton.backgroundColor = UIColor(rgb: 0x5AAD33)
         incomeButton.contentHorizontalAlignment = .center
         incomeButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -75,13 +78,13 @@ final class IntroViewController: UIViewController {
         let label = UILabel()
         label.text = "Última atualização"
         label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = UIColor(rgb: 0xA1A1A1)
+        label.textColor = UIColor(rgb: 0xA2A2A2)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var budgetView: UIView = {
-        let whiteView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 90))
+        let whiteView = UIView()
         whiteView.backgroundColor = .white
         whiteView.layer.cornerRadius = 8
         whiteView.isHidden = false
@@ -90,10 +93,79 @@ final class IntroViewController: UIViewController {
         return whiteView
     }()
     
+    private lazy var budgetTitle: UILabel = {
+        let label = UILabel()
+        label.text = "Orçamento"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.textColor = UIColor(rgb: 0x1E1E1E)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var plusLabel: UILabel = {
+        let label = UILabel()
+        label.text = "+"
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.textColor = UIColor(rgb: 0x979798)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var grayLine: UIView = {
+        let blueLine = UIView()
+        blueLine.frame.size.height = 4
+        blueLine.backgroundColor = UIColor(rgb: 0xECECEC)
+        blueLine.translatesAutoresizingMaskIntoConstraints = false
+        return blueLine
+    }()
+    
+    private lazy var suggestionView: UIView = {
+        let suggestionView = UIView()
+        suggestionView.backgroundColor = UIColor(red: 77/255.0, green: 92/255.0, blue: 228/255.0, alpha: 0.1)
+        suggestionView.layer.cornerRadius = 8
+        suggestionView.isHidden = false
+        suggestionView.translatesAutoresizingMaskIntoConstraints = false
+        suggestionView.layoutIfNeeded()
+        return suggestionView
+    }()
+    
+    private lazy var suggestionLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Sugestão"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = UIColor(rgb: 0x4D5CE4)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.layoutIfNeeded()
+        return label
+    }()
+    
+    private lazy var suggestionText: UILabel = {
+        let label = UILabel()
+        let suggestionText = "Crie seu orçamento para facilitar a visualização de suas metas"
+        label.text = suggestionText
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = UIColor(rgb: 0x54565C)
+        label.text.
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.layoutIfNeeded()
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Minhas Finanças"
         addSubviews()
         addConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.backgroundColor = .white
     }
 }
 
@@ -107,19 +179,26 @@ extension IntroViewController {
         view.addSubview(expenseButton)
         view.addSubview(incomeButton)
         view.addSubview(lastRefreshLabel)
+        view.addSubview(budgetView)
+        budgetView.addSubview(budgetTitle)
+        budgetView.addSubview(plusLabel)
+        budgetView.addSubview(grayLine)
+        view.addSubview(suggestionView)
+        suggestionView.addSubview(suggestionLabel)
+        suggestionView.addSubview(suggestionText)
     }
-
+    
     private func addConstraints() {
         let contraints = [
+            
             whiteView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            whiteView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
+            whiteView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
             whiteView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            whiteView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -720),
+            whiteView.bottomAnchor.constraint(equalTo: lastRefreshLabel.bottomAnchor, constant: 12),
             
             incomeButton.topAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: 12),
             incomeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            incomeButton.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -760),
-     
+            incomeButton.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -770),
             
             expenseButton.topAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: 12),
             expenseButton.leadingAnchor.constraint(equalTo: incomeButton.trailingAnchor, constant: 8),
@@ -134,17 +213,49 @@ extension IntroViewController {
             myBalanceTextField.topAnchor.constraint(equalTo: myBalanceLabel.bottomAnchor, constant: 4),
             myBalanceTextField.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: 19),
             myBalanceTextField.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -19),
-
+            
             blueLine.topAnchor.constraint(equalTo: myBalanceTextField.bottomAnchor, constant: 4),
             blueLine.bottomAnchor.constraint(equalTo: myBalanceTextField.bottomAnchor, constant: 5),
             blueLine.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: 19),
             blueLine.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -19),
-            blueLine.centerYAnchor.constraint(equalTo: whiteView.centerYAnchor),
-            blueLine.centerXAnchor.constraint(equalTo: whiteView.centerXAnchor),
-//
+            
             lastRefreshLabel.topAnchor.constraint(equalTo: blueLine.bottomAnchor, constant: 4),
             lastRefreshLabel.centerXAnchor.constraint(equalTo: whiteView.centerXAnchor),
-            lastRefreshLabel.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: 19)
+            lastRefreshLabel.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: 19),
+            lastRefreshLabel.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: 12),
+            
+            budgetView.topAnchor.constraint(equalTo: expenseButton.bottomAnchor, constant: 12),
+            budgetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            budgetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+//            budgetView.bottomAnchor.constraint(equalTo: suggestionView.topAnchor, constant: -36),
+            
+            budgetTitle.topAnchor.constraint(equalTo: budgetView.topAnchor, constant: 12),
+            budgetTitle.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+
+            plusLabel.centerYAnchor.constraint(equalTo: budgetTitle.centerYAnchor),
+            plusLabel.trailingAnchor.constraint(equalTo: budgetView.trailingAnchor, constant: -21),
+            plusLabel.topAnchor.constraint(equalTo: budgetView.topAnchor, constant: 12),
+
+            grayLine.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            grayLine.topAnchor.constraint(equalTo: budgetTitle.bottomAnchor, constant: 12),
+            
+            suggestionView.topAnchor.constraint(equalTo: budgetView.bottomAnchor, constant: 36),
+            suggestionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            suggestionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            suggestionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -86),
+            
+            suggestionLabel.centerXAnchor.constraint(equalTo: suggestionView.centerXAnchor),
+            suggestionLabel.leadingAnchor.constraint(equalTo: suggestionView.leadingAnchor, constant: 12),
+            suggestionLabel.trailingAnchor.constraint(equalTo: suggestionView.trailingAnchor, constant: -12),
+            suggestionLabel.topAnchor.constraint(equalTo: suggestionView.topAnchor, constant: 22),
+            
+            suggestionText.leadingAnchor.constraint(equalTo: suggestionView.leadingAnchor, constant: 12),
+            suggestionText.trailingAnchor.constraint(equalTo: suggestionView.trailingAnchor, constant: -12),
+            suggestionText.centerXAnchor.constraint(equalTo: suggestionView.centerXAnchor),
+            suggestionText.bottomAnchor.constraint(equalTo: suggestionView.bottomAnchor, constant: -22),
+            suggestionText.topAnchor.constraint(equalTo: suggestionLabel.bottomAnchor, constant: 4)
+            
+            
         ]
         
         contraints.forEach { (item) in
