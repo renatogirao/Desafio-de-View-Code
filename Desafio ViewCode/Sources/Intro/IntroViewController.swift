@@ -199,10 +199,26 @@ final class IntroViewController: UIViewController {
         return label
     }()
     
+    private lazy var grayLineSeparator1: UIView = {
+        let grayLineSeparator1 = UIView()
+        grayLineSeparator1.frame.size.height = 4
+        grayLineSeparator1.backgroundColor = UIColor(red: 77/255.0, green: 92/255.0, blue: 228/255.0, alpha: 0.1)
+        grayLineSeparator1.translatesAutoresizingMaskIntoConstraints = false
+        return grayLineSeparator1
+    }()
+    
+    private lazy var grayLineSeparator2: UIView = {
+        let grayLineSeparator = UIView()
+        grayLineSeparator.frame.size.height = 4
+        grayLineSeparator.backgroundColor = UIColor(red: 77/255.0, green: 92/255.0, blue: 228/255.0, alpha: 0.1)
+        grayLineSeparator.translatesAutoresizingMaskIntoConstraints = false
+        return grayLineSeparator
+    }()
+    
     private lazy var progressView1: UIView = {
         let progressView = UIView()
-        progressView.frame.size.height = 3
-        progressView.layer.cornerRadius = 4
+        progressView.frame.size.height = 6
+        progressView.layer.cornerRadius = 3
         progressView.backgroundColor = UIColor(rgb: 0x4D5CE4)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
@@ -210,8 +226,8 @@ final class IntroViewController: UIViewController {
     
     private lazy var progressView2: UIView = {
         let progressView = UIView()
-        progressView.frame.size.height = 3
-        progressView.layer.cornerRadius = 8
+        progressView.frame.size.height = 6
+        progressView.layer.cornerRadius = 3
         progressView.backgroundColor = UIColor(rgb: 0x4D5CE4)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
@@ -220,8 +236,35 @@ final class IntroViewController: UIViewController {
     private lazy var progressView3: UIView = {
         let progressView = UIView()
         progressView.frame.size.height = 6
-        progressView.layer.cornerRadius = 8
+        progressView.layer.cornerRadius = 3
         progressView.backgroundColor = UIColor(rgb: 0x4D5CE4)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        return progressView
+    }()
+    
+    private lazy var grayBackgroundProgress1: UIView = {
+        let progressView = UIView()
+        progressView.frame.size.height = 6
+        progressView.layer.cornerRadius = 3
+        progressView.backgroundColor = UIColor(rgb: 0xEFEFEF)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        return progressView
+    }()
+    
+    private lazy var grayBackgroundProgress2: UIView = {
+        let progressView = UIView()
+        progressView.frame.size.height = 6
+        progressView.layer.cornerRadius = 3
+        progressView.backgroundColor = UIColor(rgb: 0xEFEFEF)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        return progressView
+    }()
+    
+    private lazy var grayBackgroundProgress3: UIView = {
+        let progressView = UIView()
+        progressView.frame.size.height = 6
+        progressView.layer.cornerRadius = 3
+        progressView.backgroundColor = UIColor(rgb: 0xEFEFEF)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()
@@ -278,6 +321,9 @@ extension IntroViewController {
         view.addSubview(incomeButton)
         view.addSubview(lastRefreshLabel)
         view.addSubview(budgetView)
+        budgetView.addSubview(grayBackgroundProgress1)
+        budgetView.addSubview(grayBackgroundProgress2)
+        budgetView.addSubview(grayBackgroundProgress3)
         budgetView.addSubview(budgetTitle)
         budgetView.addSubview(plusLabel)
         budgetView.addSubview(grayLine)
@@ -290,6 +336,8 @@ extension IntroViewController {
         budgetView.addSubview(progressView1)
         budgetView.addSubview(progressView2)
         budgetView.addSubview(progressView3)
+        budgetView.addSubview(grayLineSeparator1)
+        budgetView.addSubview(grayLineSeparator2)
         view.addSubview(suggestionView)
         suggestionView.addSubview(suggestionLabel)
         suggestionView.addSubview(suggestionText)
@@ -337,6 +385,7 @@ extension IntroViewController {
             budgetView.topAnchor.constraint(equalTo: expenseButton.bottomAnchor, constant: 12),
             budgetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             budgetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            budgetView.bottomAnchor.constraint(equalTo: valueVacationLabel.bottomAnchor, constant: 12),
             
             budgetTitle.topAnchor.constraint(equalTo: budgetView.topAnchor, constant: 12),
             budgetTitle.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
@@ -356,32 +405,77 @@ extension IntroViewController {
             progressView1.topAnchor.constraint(equalTo: newCarLabel.bottomAnchor, constant: 3),
             progressView1.bottomAnchor.constraint(equalTo: newCarLabel.bottomAnchor, constant: 9),
             progressView1.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
-            progressView1.trailingAnchor.constraint(equalTo: budgetView.trailingAnchor, constant: -29),
+            progressView1.trailingAnchor.constraint(equalTo: budgetView.trailingAnchor, constant: -200),
             
-            valueCarLabel.topAnchor.constraint(equalTo: progressView1.bottomAnchor, constant: 4),
+            grayBackgroundProgress1.centerYAnchor.constraint(equalTo: progressView1.centerYAnchor),
+            grayBackgroundProgress1.topAnchor.constraint(equalTo: newCarLabel.bottomAnchor, constant: 3),
+            grayBackgroundProgress1.bottomAnchor.constraint(equalTo: newCarLabel.bottomAnchor, constant: 9),
+            grayBackgroundProgress1.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            grayBackgroundProgress1.trailingAnchor.constraint(equalTo: budgetView.trailingAnchor, constant: -16),
+            
+            valueCarLabel.topAnchor.constraint(equalTo: progressView1.topAnchor, constant: 8),
+            valueCarLabel.bottomAnchor.constraint(equalTo: progressView1.topAnchor, constant: 22),
             valueCarLabel.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
             
+            grayLineSeparator1.topAnchor.constraint(equalTo: valueCarLabel.bottomAnchor, constant: 8),
+            grayLineSeparator1.bottomAnchor.constraint(equalTo: valueCarLabel.bottomAnchor, constant: 9),
+            grayLineSeparator1.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            grayLineSeparator1.trailingAnchor.constraint(equalTo: budgetView.trailingAnchor, constant: -16),
             
+            newTVLabel.topAnchor.constraint(equalTo: grayLineSeparator1.bottomAnchor, constant: 8),
+            newTVLabel.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
             
+            progressView2.topAnchor.constraint(equalTo: newTVLabel.bottomAnchor, constant: 3),
+            progressView2.bottomAnchor.constraint(equalTo: newTVLabel.bottomAnchor, constant: 9),
+            progressView2.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            progressView2.trailingAnchor.constraint(equalTo: budgetView.trailingAnchor, constant: -29),
             
+            grayBackgroundProgress2.centerYAnchor.constraint(equalTo: progressView2.centerYAnchor),
+            grayBackgroundProgress2.topAnchor.constraint(equalTo: newTVLabel.bottomAnchor, constant: 3),
+            grayBackgroundProgress2.bottomAnchor.constraint(equalTo: newTVLabel.bottomAnchor, constant: 9),
+            grayBackgroundProgress2.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            grayBackgroundProgress2.trailingAnchor.constraint(equalTo: budgetView.trailingAnchor, constant: -16),
+            
+            valueTVLabel.topAnchor.constraint(equalTo: progressView2.topAnchor, constant: 8),
+            valueTVLabel.bottomAnchor.constraint(equalTo: progressView2.topAnchor, constant: 22),
+            valueTVLabel.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            
+            grayLineSeparator2.topAnchor.constraint(equalTo: valueTVLabel.bottomAnchor, constant: 8),
+            grayLineSeparator2.bottomAnchor.constraint(equalTo: valueTVLabel.bottomAnchor, constant: 9),
+            grayLineSeparator2.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            grayLineSeparator2.trailingAnchor.constraint(equalTo: budgetView.trailingAnchor, constant: -16),
+            
+            vacationLabel.topAnchor.constraint(equalTo: grayLineSeparator2.bottomAnchor, constant: 8),
+            vacationLabel.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            
+            progressView3.topAnchor.constraint(equalTo: vacationLabel.bottomAnchor, constant: 3),
+            progressView3.bottomAnchor.constraint(equalTo: vacationLabel.bottomAnchor, constant: 9),
+            progressView3.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            progressView3.trailingAnchor.constraint(equalTo: budgetView.trailingAnchor, constant: -315),
+            
+            grayBackgroundProgress3.centerYAnchor.constraint(equalTo: progressView3.centerYAnchor),
+            grayBackgroundProgress3.topAnchor.constraint(equalTo: vacationLabel.bottomAnchor, constant: 3),
+            grayBackgroundProgress3.bottomAnchor.constraint(equalTo: vacationLabel.bottomAnchor, constant: 9),
+            grayBackgroundProgress3.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            grayBackgroundProgress3.trailingAnchor.constraint(equalTo: budgetView.trailingAnchor, constant: -16),
+            
+            valueVacationLabel.topAnchor.constraint(equalTo: progressView3.topAnchor, constant: 8),
+            valueVacationLabel.bottomAnchor.constraint(equalTo: progressView3.topAnchor, constant: 22),
+            valueVacationLabel.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
             
             suggestionView.topAnchor.constraint(equalTo: budgetView.bottomAnchor, constant: 36),
             suggestionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             suggestionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            suggestionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -86),
+            suggestionView.bottomAnchor.constraint(equalTo: suggestionText.bottomAnchor, constant: 22),
             
-            suggestionLabel.centerXAnchor.constraint(equalTo: suggestionView.centerXAnchor),
             suggestionLabel.leadingAnchor.constraint(equalTo: suggestionView.leadingAnchor, constant: 12),
             suggestionLabel.trailingAnchor.constraint(equalTo: suggestionView.trailingAnchor, constant: -12),
             suggestionLabel.topAnchor.constraint(equalTo: suggestionView.topAnchor, constant: 22),
 
             suggestionText.leadingAnchor.constraint(equalTo: suggestionView.leadingAnchor, constant: 12),
             suggestionText.trailingAnchor.constraint(equalTo: suggestionView.trailingAnchor, constant: -12),
-            suggestionText.centerXAnchor.constraint(equalTo: suggestionView.centerXAnchor),
             suggestionText.bottomAnchor.constraint(equalTo: suggestionView.bottomAnchor, constant: -22),
             suggestionText.topAnchor.constraint(equalTo: suggestionLabel.bottomAnchor, constant: 4)
-            
-            
         ]
         
         contraints.forEach { (item) in
