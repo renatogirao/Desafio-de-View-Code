@@ -202,7 +202,7 @@ final class IntroViewController: UIViewController {
     private lazy var progressView1: UIView = {
         let progressView = UIView()
         progressView.frame.size.height = 3
-        progressView.layer.cornerRadius = 8
+        progressView.layer.cornerRadius = 4
         progressView.backgroundColor = UIColor(rgb: 0x4D5CE4)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
@@ -219,7 +219,7 @@ final class IntroViewController: UIViewController {
     
     private lazy var progressView3: UIView = {
         let progressView = UIView()
-        progressView.frame.size.height = 3
+        progressView.frame.size.height = 6
         progressView.layer.cornerRadius = 8
         progressView.backgroundColor = UIColor(rgb: 0x4D5CE4)
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -353,8 +353,16 @@ extension IntroViewController {
             newCarLabel.topAnchor.constraint(equalTo: grayLine.bottomAnchor, constant: 12),
             newCarLabel.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
             
-            valueCarLabel.topAnchor.constraint(equalTo: newCarLabel.bottomAnchor, constant: 4),
+            progressView1.topAnchor.constraint(equalTo: newCarLabel.bottomAnchor, constant: 3),
+            progressView1.bottomAnchor.constraint(equalTo: newCarLabel.bottomAnchor, constant: 9),
+            progressView1.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            progressView1.trailingAnchor.constraint(equalTo: budgetView.trailingAnchor, constant: -29),
+            
+            valueCarLabel.topAnchor.constraint(equalTo: progressView1.bottomAnchor, constant: 4),
             valueCarLabel.leadingAnchor.constraint(equalTo: budgetView.leadingAnchor, constant: 16),
+            
+            
+            
             
             
             suggestionView.topAnchor.constraint(equalTo: budgetView.bottomAnchor, constant: 36),
