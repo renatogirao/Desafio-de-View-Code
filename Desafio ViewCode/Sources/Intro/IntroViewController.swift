@@ -351,7 +351,6 @@ extension IntroViewController {
             whiteView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             whiteView.bottomAnchor.constraint(equalTo: lastRefreshLabel.bottomAnchor, constant: 12),
             
-            
             incomeButton.topAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: 12),
             incomeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             incomeButton.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -770),
