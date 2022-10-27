@@ -9,6 +9,8 @@ import UIKit
 
 class NewBillViewController: UIViewController {
 
+//    private let billView: NewBillView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

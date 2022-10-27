@@ -13,6 +13,9 @@
 		57B64DB128ECC32D0061A9B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57B64DB028ECC32D0061A9B0 /* Assets.xcassets */; };
 		57B64DB428ECC32D0061A9B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B64DB228ECC32D0061A9B0 /* LaunchScreen.storyboard */; };
 		57B64DC128ECD2FC0061A9B0 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B64DC028ECD2FC0061A9B0 /* IntroViewController.swift */; };
+		57FD748E290B2161007DEBBD /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FD748D290B2161007DEBBD /* IntroView.swift */; };
+		57FD7493290B32CD007DEBBD /* NewBillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FD7492290B32CD007DEBBD /* NewBillView.swift */; };
+		57FD7495290B32E3007DEBBD /* NewBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FD7494290B32E3007DEBBD /* NewBillViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		57B64DB328ECC32D0061A9B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57B64DB528ECC32D0061A9B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57B64DC028ECD2FC0061A9B0 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		57FD748D290B2161007DEBBD /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		57FD7492290B32CD007DEBBD /* NewBillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillView.swift; sourceTree = "<group>"; };
+		57FD7494290B32E3007DEBBD /* NewBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,7 @@
 		57B64DBD28ECD22C0061A9B0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				57FD748F290B32A6007DEBBD /* NewBillViewController */,
 				571F109228EFE15700C3387E /* Utils */,
 				57B64DBE28ECD2A50061A9B0 /* Intro */,
 			);
@@ -111,6 +118,32 @@
 		57B64DBF28ECD2AB0061A9B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				57FD748D290B2161007DEBBD /* IntroView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		57FD748F290B32A6007DEBBD /* NewBillViewController */ = {
+			isa = PBXGroup;
+			children = (
+				57FD7491290B32BF007DEBBD /* View */,
+				57FD7490290B32B9007DEBBD /* Controller */,
+			);
+			path = NewBillViewController;
+			sourceTree = "<group>";
+		};
+		57FD7490290B32B9007DEBBD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				57FD7494290B32E3007DEBBD /* NewBillViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		57FD7491290B32BF007DEBBD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				57FD7492290B32CD007DEBBD /* NewBillView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +220,9 @@
 			files = (
 				57B64DC128ECD2FC0061A9B0 /* IntroViewController.swift in Sources */,
 				57B64DA828ECC32A0061A9B0 /* AppDelegate.swift in Sources */,
+				57FD7495290B32E3007DEBBD /* NewBillViewController.swift in Sources */,
+				57FD7493290B32CD007DEBBD /* NewBillView.swift in Sources */,
+				57FD748E290B2161007DEBBD /* IntroView.swift in Sources */,
 				57B64DAA28ECC32A0061A9B0 /* SceneDelegate.swift in Sources */,
 				571F109428EFE16B00C3387E /* UIColor+utils.swift in Sources */,
 			);
