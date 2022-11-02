@@ -19,8 +19,12 @@ final class IntroViewController: UIViewController {
     
     private func buildView() {
         view = IntroView()
-        
         introView = view as? IntroView
+    }
+    
+    @objc func goToNewBillScreen(_ sender: UIButton!) {
+        let newBillVC = NewBillViewController()
+        navigationController?.pushViewController(newBillVC, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

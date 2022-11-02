@@ -9,23 +9,24 @@ import UIKit
 
 class NewBillViewController: UIViewController {
 
-//    private let billView: NewBillView()
+    private var newBillView: NewBillView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .white
+        navigationItem.title = "Teste"
+        buildView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func buildView() {
+        view = NewBillView()
+        newBillView = view as? NewBillView
     }
-    */
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.backgroundColor = .white
+    }
 
 }

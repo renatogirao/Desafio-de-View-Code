@@ -9,10 +9,12 @@ import UIKit
 
 class IntroView: UIView {
     
+    private var introVC: IntroViewController?
+    
     private lazy var myBalanceLabel: UILabel = {
         let label = UILabel()
         label.text = "Meu Saldo"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "Roboto Regular", size: 12)
         label.textColor = UIColor(rgb: 0xA2A2A2)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -32,7 +34,7 @@ class IntroView: UIView {
     private lazy var myBalanceTextField: UITextField = {
         let myBalanceTextField = UITextField()
         myBalanceTextField.textColor = .black
-        myBalanceTextField.font = UIFont.boldSystemFont(ofSize: 32)
+        myBalanceTextField.font = UIFont(name: "Roboto Bold", size: 32)
         myBalanceTextField.borderStyle = .none
         myBalanceTextField.translatesAutoresizingMaskIntoConstraints = false
         myBalanceTextField.placeholder = "R$ 1.000,00"
@@ -43,7 +45,7 @@ class IntroView: UIView {
     private lazy var lastRefreshLabel: UILabel = {
         let label = UILabel()
         label.text = "Última atualização"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "Roboto Regular", size: 12)
         label.textColor = UIColor(rgb: 0xA2A2A2)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -52,7 +54,7 @@ class IntroView: UIView {
     private lazy var lastRefreshHourLabel: UILabel = {
         let label = UILabel()
         label.text = "09:41"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "Roboto Regular", size: 12)
         label.textColor = UIColor(rgb: 0xA2A2A2)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -67,10 +69,11 @@ class IntroView: UIView {
         return blueLine
     }()
     
-    private lazy var expenseButton: UIButton = {
+    lazy var expenseButton: UIButton = {
         let addButton = UIButton()
+        addButton.addTarget(self, action: #selector(IntroViewController.goToNewBillScreen), for: .touchUpInside)
         addButton.setTitle("-\nNOVA DESPESA", for: .normal)
-        addButton.titleLabel?.font = .boldSystemFont(ofSize: 12)
+        addButton.titleLabel?.font = UIFont(name: "Roboto Bold", size: 12)
         addButton.titleLabel?.textAlignment = .center
         addButton.backgroundColor = UIColor(rgb: 0xC24343)
         addButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -83,7 +86,7 @@ class IntroView: UIView {
     private lazy var incomeButton: UIButton = {
         let incomeButton = UIButton()
         incomeButton.setTitle("+\nNOVA RECEITA", for: .normal)
-        incomeButton.titleLabel?.font = .boldSystemFont(ofSize: 12)
+        incomeButton.titleLabel?.font = UIFont(name: "Roboto Bold", size: 12)
         incomeButton.titleLabel?.textAlignment = .center
         incomeButton.backgroundColor = UIColor(rgb: 0x5AAD33)
         incomeButton.contentHorizontalAlignment = .center
@@ -106,7 +109,7 @@ class IntroView: UIView {
     private lazy var budgetTitle: UILabel = {
         let label = UILabel()
         label.text = "Orçamento"
-        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.font = UIFont(name: "Roboto Bold", size: 22)
         label.textColor = UIColor(rgb: 0x1E1E1E)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -115,7 +118,7 @@ class IntroView: UIView {
     private lazy var newCarLabel: UILabel = {
         let label = UILabel()
         label.text = "Novo carro"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "Roboto Regular", size: 16)
         label.textColor = UIColor(rgb: 0x000000)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -124,7 +127,7 @@ class IntroView: UIView {
     private lazy var newTVLabel: UILabel = {
         let label = UILabel()
         label.text = "TV"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "Roboto Regular", size: 12)
         label.textColor = UIColor(rgb: 0x000000)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -133,7 +136,7 @@ class IntroView: UIView {
     private lazy var vacationLabel: UILabel = {
         let label = UILabel()
         label.text = "Férias nas Maldivas"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "Roboto Regular", size: 16)
         label.textColor = UIColor(rgb: 0x000000)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -142,7 +145,7 @@ class IntroView: UIView {
     private lazy var plusLabel: UILabel = {
         let label = UILabel()
         label.text = "+"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.font = UIFont(name: "Roboto Bold", size: 24)
         label.textColor = UIColor(rgb: 0x979798)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -169,7 +172,7 @@ class IntroView: UIView {
     private lazy var valueCarLabel : UILabel = {
         let label = UILabel()
         label.text = "R$ 2000,00"
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont(name: "Roboto Bold", size: 12)
         label.textColor = UIColor(rgb: 0xC24343)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -180,7 +183,7 @@ class IntroView: UIView {
     private lazy var valueTVLabel : UILabel = {
         let label = UILabel()
         label.text = "R$ 3000,00"
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont(name: "Roboto Bold", size: 12)
         label.textColor = UIColor(rgb: 0xC24343)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -191,7 +194,7 @@ class IntroView: UIView {
     private lazy var valueVacationLabel : UILabel = {
         let label = UILabel()
         label.text = "R$ 1,50"
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont(name: "Roboto Bold", size: 12)
         label.textColor = UIColor(rgb: 0xC24343)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -272,7 +275,7 @@ class IntroView: UIView {
     private lazy var suggestionLabel : UILabel = {
         let label = UILabel()
         label.text = "Sugestão"
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "Roboto Bold", size: 18)
         label.textColor = UIColor(rgb: 0x4D5CE4)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -287,7 +290,7 @@ class IntroView: UIView {
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont(name: "Roboto Bold", size: 16)
         label.textColor = UIColor(rgb: 0x54565C)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layoutIfNeeded()
